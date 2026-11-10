@@ -29,9 +29,9 @@ from torch.utils.data import DataLoader, get_worker_info, IterableDataset
 
 from helpers.video_helpers import calibration_view_eulers, calibration_warp_matrix, decode_frames
 
-COMMA1M_REPO_ID = "commaai/comma1M"
+COMMA5K_REPO_ID = "commaai/comma5k"
 
-__all__ = ["COMMA1M_REPO_ID", "Comma1MDataset", "DatasetConfig", "prefill_supercombo_batch"]
+__all__ = ["COMMA5K_REPO_ID", "Comma5kDataset", "DatasetConfig", "prefill_supercombo_batch"]
 
 T_IDXS = np.asarray(ModelConstants.T_IDXS)
 W, H = MEDMODEL_INPUT_SIZE
@@ -62,8 +62,8 @@ class DatasetConfig:
     limit: int | None = None
 
 
-class Comma1MDataset(IterableDataset):
-    """Iterable over public comma1M segments."""
+class Comma5kDataset(IterableDataset):
+    """Iterable over public comma5k segments."""
 
     def __init__(
         self,
@@ -372,7 +372,7 @@ def _main() -> None:
             "persistent_workers": True,
             "prefetch_factor": 1,
         }
-    batches = iter(DataLoader(Comma1MDataset(config, local_rank=args.gpu_id), **loader_options))
+    batches = iter(DataLoader(Comma5kDataset(config, local_rank=args.gpu_id), **loader_options))
     # Keep the large ORT session in the main process, never in the dataset or its workers.
     inputs, targets = next(batches)
 

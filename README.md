@@ -6,7 +6,7 @@ With a comma four, and a few logged segments, distill the openpilot driving mode
 
 Drop your segments video files and rlogs into the `data/` folder.
 
-You don't have a comma four, no problem! You can still download videos and labels from https://huggingface.co/datasets/commaai/comma1M and train your own driving models.
+You don't have a comma four, no problem! You can still download videos and labels from https://huggingface.co/datasets/commaai/comma5k and train your own driving models.
 
 ## Step 1: Run a simple localization pipeline
 

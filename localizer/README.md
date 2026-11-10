@@ -5,13 +5,13 @@ The most minimal localization pipeline. It globalizes logged `deviceMotion` with
 ## Use
 
 ```bash
-uv sync 
+uv sync
 uv run python -m localizer.run
 ```
 
 The first run may download precise orbit and ionosphere data into Laika's cache.
 
-Measured against the comma1M reference `localizer.safetensors` for the included segment:
+Measured against the comma5k reference `localizer.safetensors` for the included segment:
 
 | Metric | error |
 | --- | ---: |

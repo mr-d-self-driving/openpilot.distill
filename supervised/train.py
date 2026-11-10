@@ -1,4 +1,4 @@
-"""Train Supercombo on logged comma1M segments."""
+"""Train Supercombo on logged comma5k segments."""
 
 import argparse
 import os
@@ -14,7 +14,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader
 import wandb
 
-from .dataset import Comma1MDataset, DatasetConfig, prefill_supercombo_batch
+from .dataset import Comma5kDataset, DatasetConfig, prefill_supercombo_batch
 from .model import Supercombo
 from .model_for_inference import InputQueues, ORTSupercomboForInference
 
@@ -58,7 +58,7 @@ def _identity(value):
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--dataset", default=str(ROOT), help="comma1M dataset root")
+    parser.add_argument("--dataset", default=str(ROOT), help="comma5k dataset root")
     parser.add_argument(
         "--teacher",
         default=str(ROOT / "models/big_driving_supercombo.onnx"),
@@ -91,7 +91,7 @@ def main() -> None:
     torch.manual_seed(rank)
     torch.set_float32_matmul_precision("high")
 
-    train_dataset = Comma1MDataset(
+    train_dataset = Comma5kDataset(
         DatasetConfig(args.dataset, batch_size=args.batch_size),
         local_rank=local_rank,
         global_rank=rank,
